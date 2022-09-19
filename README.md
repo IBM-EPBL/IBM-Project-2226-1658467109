@@ -18,4 +18,4 @@ You must have prior knowledge of following topics to complete this project.
   * Inception-V3
   * Xception
   * Flask: 
-  *  *Flask is a popular Python web framework, meaning it is a third-party Python library used for developing web applications.*
+    *  *Flask is a popular Python web framework, meaning it is a third-party Python library used for developing web applications.*
