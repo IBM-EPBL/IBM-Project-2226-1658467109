@@ -42,3 +42,7 @@ To accomplish this
 Create project structure as shown below
 
 ![Structure](https://lh5.googleusercontent.com/YhUnQA5GR__bgT0Gr3-mUDYeec2NN1hLVQONvPw9Dxgv0PJptlw34CcP-pdWn_VYTcMIkOFsH5zl4tMKZ6v8s7sD0V_NS5EuKsms_M2YlQlGk1mMsoiUpWpi-LfR6A)
+
+## Dataset link
+
+[Kaggle Dataset link](https://www.kaggle.com/datasets/arbethi/diabetic-retinopathy-level-detection?select=preprocessed+dataset)
