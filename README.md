@@ -19,3 +19,26 @@ You must have prior knowledge of following topics to complete this project.
   * Xception
   * Flask: 
     *  *Flask is a popular Python web framework, meaning it is a third-party Python library used for developing web applications.*
+
+## Project Objectives
+Know fundamental concepts and techniques of transfer learning like Xception.
+Gain a broad understanding of image data.
+Know how to pre-process/clean the data using different data pre-processing techniques.
+Know how to build a web application using the Flask framework.
+
+## Project Flow
+The user interacts with the UI (User Interface) to choose the image.
+The chosen image analyzed by the model which is integrated with flask application.
+The Xception Model analyzes the image, then the prediction is showcased on the Flask UI.
+
+To accomplish this
+ 1. Data Collection
+ 2. Data Preprocessing
+ 3. Model Building
+ 4. Cloudant DB
+ 5. Application Building
+
+## Project Structure
+Create project structure as shown below
+
+![Structure](https://lh5.googleusercontent.com/YhUnQA5GR__bgT0Gr3-mUDYeec2NN1hLVQONvPw9Dxgv0PJptlw34CcP-pdWn_VYTcMIkOFsH5zl4tMKZ6v8s7sD0V_NS5EuKsms_M2YlQlGk1mMsoiUpWpi-LfR6A)
