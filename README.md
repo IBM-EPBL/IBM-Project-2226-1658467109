@@ -46,3 +46,17 @@ Create project structure as shown below
 ## Dataset link
 
 [Kaggle Dataset link](https://www.kaggle.com/datasets/arbethi/diabetic-retinopathy-level-detection?select=preprocessed+dataset)
+
+Download the dataset
+Use CNN and add dense layer
+Train and save the model
+
+## Cloud
+ * Register and login to cloud
+ * Create service instance and service essentials
+ * Launch cloudant DB and create database
+ 
+## Application Building
+  -> In this phase we will build a simple HTML page that runs python code using flask
+  
+#### Finally register the model in IBM Cloud and train the model
