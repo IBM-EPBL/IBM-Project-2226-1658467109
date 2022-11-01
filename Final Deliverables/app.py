@@ -9,11 +9,10 @@ from cloudant.client import Cloudant
 model = load_model(r"Updated-xception-diabetic-retinopathy.h5")
 app = Flask(__name__)
 # Authenticate using an IAM API key
-client = Cloudant . iam('d3ffc21a-c9d1-4276-a7c3-d7a48a949e1f-bluemix',
+client = Cloudant.iam('d3ffc21a-c9d1-4276-a7c3-d7a48a949e1f-bluemix',
                         'oS6rF9Lb8-d8IyJW4VEdHx5kiIN9ehQnNoj8ygKXFjzu', connect=True)
 # Create a database using an initialized client
 my_database = client.create_database('my_database')
-
 # default home page or route
 @app.route('/')
 def index():
@@ -23,31 +22,32 @@ def index():
 def home():
     return render_template("index.html")
 
+
 # registration page
 @ app.route('/register')
-def register():
-    return render_template('register.html')
-
-@ app.route('/afterreg', methods=['POST'])
-def afterreg():
-    x = [x for x in request.form.values()]
-    print(x)
-    data = {
-        '_id': x[1],  # Setting id is optional
-        'name': x[0],
-        'psw': x[2]
-    }
-    print(data)
-    query = {'_id': {'$eq': data['_id']}}
-    docs = my_database.get_query_result(query)
-    print(docs)
-    print(len(docs.all()))
-    if (len(docs.all()) == 0):
-        url = my_database.create_document(data)
-        return render_template("register.html", pred=" Registration Successful , please login using your details ")
+def register_user():
+    if(request.method=="POST"):
+        x = [x for x in request.form.values()]
+        print(x)
+        data = {
+            'name': x[0],
+            'mail': x[1],
+            'psw': x[2]
+        }
+        print(data)
+        query = {'mail': {'$eq': data['mail']}}
+        docs = my_database.get_query_result(query)
+        print(docs)
+        print(len(docs.all()))
+        if (len(docs.all()) == 0):
+            url = my_database.create_document(data)
+            return render_template("register.html", pred=" Registration Successful , please login using your details ")
+        else:
+            return render_template('register.html', pred=" You are already a member , please login using your details ")
     else:
-        return render_template('register.html', pred=" You are already a nomber , please login using your details ")
-
+        return render_template('register.html')
+    
+    
 # login page
 @ app.route('/login')
 def login():
