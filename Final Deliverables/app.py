@@ -12,7 +12,9 @@ app = Flask(__name__)
 client = Cloudant.iam('d3ffc21a-c9d1-4276-a7c3-d7a48a949e1f-bluemix',
                         'oS6rF9Lb8-d8IyJW4VEdHx5kiIN9ehQnNoj8ygKXFjzu', connect=True)
 # Create a database using an initialized client
-my_database = client.create_database('my_database')
+my_database = client.create_database('my_db')
+if my_database.exists():
+    print("Database '{0}' successfully created.".format('my_db'))
 # default home page or route
 @app.route('/')
 def index():
@@ -22,21 +24,32 @@ def index():
 def home():
     return render_template("index.html")
 
+@ app.route('/register')
+def register():
+    return render_template("register.html")
 
 # registration page
-@ app.route('/register')
-def register_user():
-    if(request.method=="POST"):
-        x = [x for x in request.form.values()]
-        print(x)
+@ app.route('/afterregister',methods=["GET","POST"])
+def afterregister():
+    if request.method == "POST":
+        name =  request.form.get("exampleInputName")
+        mail = request.form.get("exampleInputEmail1")
+        mobile = request.form.get("exampleInputMobile1")
+        pswd = request.form.get("exampleInputPassword1")
+        #x = [x for x in request.form.values()]
+        print(name,mail,mobile,pswd)
         data = {
-            'name': x[0],
-            'mail': x[1],
-            'psw': x[2]
+            'name': name,
+            'mail': mail,
+            'mobile': mobile,
+            'psw': pswd
         }
         print(data)
+        #docs = my_database.create_document(data)
         query = {'mail': {'$eq': data['mail']}}
         docs = my_database.get_query_result(query)
+        if docs.exists():
+            print("Document '{0}' successfully created and values are inserted.".format('docs'))
         print(docs)
         print(len(docs.all()))
         if (len(docs.all()) == 0):
@@ -46,7 +59,6 @@ def register_user():
             return render_template('register.html', pred=" You are already a member , please login using your details ")
     else:
         return render_template('register.html')
-    
     
 # login page
 @ app.route('/login')
