@@ -24,20 +24,18 @@ def index():
 def home():
     return render_template("index.html")
 
-@ app.route('/register')
+'''@ app.route('/register')
 def register():
-    return render_template("register.html")
+    return render_template("register.html")'''
 
 # registration page
-@ app.route('/afterregister',methods=["GET","POST"])
-def afterregister():
+@ app.route('/register',methods=["GET","POST"])
+def register():
     if request.method == "POST":
-        name =  request.form.get("exampleInputName")
-        mail = request.form.get("exampleInputEmail1")
-        mobile = request.form.get("exampleInputMobile1")
-        pswd = request.form.get("exampleInputPassword1")
-        #x = [x for x in request.form.values()]
-        print(name,mail,mobile,pswd)
+        name =  request.form.get("name")
+        mail = request.form.get("emailid")
+        mobile = request.form.get("num")
+        pswd = request.form.get("pass")
         data = {
             'name': name,
             'mail': mail,
@@ -45,11 +43,8 @@ def afterregister():
             'psw': pswd
         }
         print(data)
-        #docs = my_database.create_document(data)
         query = {'mail': {'$eq': data['mail']}}
         docs = my_database.get_query_result(query)
-        if docs.exists():
-            print("Document '{0}' successfully created and values are inserted.".format('docs'))
         print(docs)
         print(len(docs.all()))
         if (len(docs.all()) == 0):
@@ -60,27 +55,26 @@ def afterregister():
     else:
         return render_template('register.html')
     
-# login page
-@ app.route('/login')
-def login():
-    return render_template('login.html')
 
-@ app.route('/afterlogin', methods=[' POST '])
-def afterlogin():
-    user = request.form['_id']
-    passw = request.form['psw']
-    print(user, passw)
-    query = {'_id': {'$eq': user}}
-    docs = my_database.get_query_result(query)
-    print(docs)
-    print(len(docs.all()))
-    if (len(docs.all()) == 0):
-        return render_template('login.html', pred="The username is not found.")
-    else:
-        if ((user == docs[0][0]['_ id'] and passw == docs[0][0]['psw'])):
-            return redirect(url_for('prediction'))
+@ app.route('/login', methods=['GET','POST'])
+def login():
+    if request.method == "POST":
+        user = request.form.get('name')
+        passw = request.form.get('pass')
+        print(user, passw)
+        query = {'_id': {'$eq': user}}
+        docs = my_database.get_query_result(query)
+        print(docs)
+        print(len(docs.all()))
+        if (len(docs.all()) == 0):
+            return render_template('login.html', pred="The username is not found.")
         else:
-            print('Invalid User')
+            if ((user == docs[0][0]['_id'] and passw == docs[0][0]['pswd'])):
+                return redirect(url_for('prediction'))
+            else:
+                print('Invalid User')
+    else:
+        return render_template('login.html')
 
 @ app.route('/logout')
 def logout():
