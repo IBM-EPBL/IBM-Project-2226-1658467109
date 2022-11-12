@@ -33,25 +33,34 @@
         <div>
         <a class="navbar-brand" href="#" style="color:aliceblue">Diabetic Retinopathy Classification</a>
         </div>
+        {{msg}}
         <div class="navbar-collapse collapse w-100 order-3 dual-collapse2" id="navbarNav">
           <ul class="navbar-nav mr-auto text-center" id="navbarRight">
             <li class="nav-item active">
               <a class="nav-link" href="index" style="color: aliceblue;">Home </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="login" style="color: aliceblue;">Login</a>
+            <li class="nav-item" style="visibility:{{ vis2 }}">
+              <a class="nav-link" href="predict" style="color: aliceblue;">Prediction</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="register"style="color: aliceblue;">Register</a>
+              <a class="nav-link" href="login" style="color: aliceblue;">{{pred}}</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="predict"style="color: aliceblue;">Prediction</a>
+            <li class="nav-item" style="visibility:{{ vis }}">
+              <a class="nav-link" href="register" style="color: aliceblue;">Register</a>
             </li>
           </ul>
         </div>
       </nav>
-      <div class="d-flex justify-content-center">
-        <img style="width:70vw;" src="static/diabetic-retinopathy-home.jpg">
+      <br><br>
+        <div class="jumbotron container">
+          <h1 class="display-4">Diabetic Retinopathy</h1>
+          <p class="lead">Diabetic retinopathy is a diabetes complication that affects eyes. It's caused by damage to the blood vessels of the light-sensitive tissue at the back of the eye (retina).
+            At first, diabetic retinopathy might cause no symptoms or only mild vision problems. But it can lead to blindness.            
+            The condition can develop in anyone who has type 1 or type 2 diabetes. The longer you have diabetes and the less controlled your blood sugar is, the more likely you are to develop this eye complication.</p>
+          <hr class="my-4">
+          <div class="d-flex justify-content-center">
+            <img style="width:70vw;" src="static/diabetic-retinopathy-home.jpg">
+            </div>
         </div>
   </body>
 </html>

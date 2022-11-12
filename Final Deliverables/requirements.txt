@@ -1,4 +1,6 @@
 numpy
-tensorflow==2.8
+tensorflow
 flask
 cloudant
+Werkzeug
+twilio

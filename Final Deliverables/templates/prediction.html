@@ -46,17 +46,18 @@
     </div>
   </nav>
   <br><br>
-  <div class="container justify-content-center" style="width:400px">
-    <form>
+  <div class="container justify-content-center" style="width:700px">
+    <form action = "/predict" method = "POST" enctype="multipart/form-data">
     <label for="formFileLg" class="form-label">Upload Image</label>
-    <input class="form-control form-control-lg" id="formFileLg" type="file" />
+    <input class="form-control form-control-lg" name ="file" type="file" />
     <br>
-    <a href="result" class="btn btn-dark">Predict</a>
+    <button class="btn btn-lg btn-dark" type = "submit">Predict</button>
     </form>
+    <br>
+    <h1>{{prediction}}</h1>
   </div>
   <br><br><br>
-  <div>
-      {{prediction}}
+  <div class="d-flex justify-content-center" >
       <img src="static/level.png" style="width: 90%">
   </div>
 </body>
