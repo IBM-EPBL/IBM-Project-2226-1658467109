@@ -61,3 +61,8 @@ Train and save the model
   -> In this phase we will build a simple HTML page that runs python code using flask
   
 #### Finally register the model in IBM Cloud and train the model
+
+### Using the virtual env
+  * Unzip the retino-env.zip to your final deliverables 
+  * then activate the bat (retino-env\Scripts\activate.bat
+  * run your app.py file
