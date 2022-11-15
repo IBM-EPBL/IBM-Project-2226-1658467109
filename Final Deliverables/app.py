@@ -3,7 +3,7 @@ import os
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
 from tensorflow.keras.applications.inception_v3 import preprocess_input
-from flask import Flask, request,flash, render_template, redirect,url_for
+from flask import Flask, request,flash, render_template, redirect,url_for,session
 from cloudant.client import Cloudant
 from twilio.rest import Client
 model = load_model(r"Updated-xception-diabetic-retinopathy.h5")
@@ -24,10 +24,6 @@ user = ""
 @app.route('/')
 def index():
     return render_template('index.html', pred="Login", vis ="visible")
-
-@ app.route('/index')
-def home():
-    return render_template("index.html", pred="Login", vis ="visible")
 
 
 # registration page
@@ -72,6 +68,7 @@ def login():
             return render_template('login.html', pred="")
         else:
             if ((user == docs[0][0]['mail'] and passw == docs[0][0]['psw'])):
+                session['user'] = user
                 flash("Logged in as " + str(user))
                 return render_template('index.html', pred="Logged in as "+str(user), vis ="hidden", vis2="visible")
             else:
@@ -82,6 +79,7 @@ def login():
 
 @ app.route('/logout')
 def logout():
+    session.pop('user',None)
     return render_template('logout.html')
 
 @app.route("/predict",methods=["GET", "POST"])
@@ -121,6 +119,13 @@ def predict():
         return render_template('prediction.html', prediction=result, fname = filepath)
     else:
         return render_template("prediction.html")
+
+@ app.route('/index')
+def home():
+    login=False
+    if 'user' in session:
+        login=True
+    return render_template("index.html", pred="Login", vis ="visible",login=login)
 
 if __name__ == "__main__":
     app.debug = True
